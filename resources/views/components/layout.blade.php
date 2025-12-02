@@ -790,14 +790,15 @@
                 
                 <!-- Login Form -->
                 <div id="loginForm" class="form-panel active">
-                    <form id="loginFormSubmit">
+                    <form action="{{ route('login') }}" method="POST">
+                        @csrf
                         <div class="mb-4">
                             <label class="form-label">Email Address</label>
-                            <input type="email" class="form-input" placeholder="you@example.com" required>
+                            <input type="email" name="email" class="form-input" placeholder="you@example.com" required>
                         </div>
-                        <div class="mb-6">
+                        <div class="mb-6">  
                             <label class="form-label">Password</label>
-                            <input type="password" class="form-input" placeholder="Enter your password" required>
+                            <input type="password" name="password" class="form-input" placeholder="Enter your password" required>
                             <div class="text-right mt-1">
                                 <a href="#" class="text-sm text-blue-600 hover:underline">Forgot password?</a>
                             </div>
@@ -828,29 +829,26 @@
                 
                 <!-- Register Form -->
                 <div id="registerForm" class="form-panel">
-                    <form id="registerFormSubmit">
+                    <form action="{{ route('register') }}" method="POST">
+                        @csrf
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                             <div>
-                                <label class="form-label">First Name</label>
-                                <input type="text" class="form-input" placeholder="John" required>
-                            </div>
-                            <div>
-                                <label class="form-label">Last Name</label>
-                                <input type="text" class="form-input" placeholder="Doe" required>
+                                <label class="form-label">Full Name</label>
+                                <input type="text" name="name" class="form-input" placeholder="John" required>
                             </div>
                         </div>
                         <div class="mb-4">
                             <label class="form-label">Email Address</label>
-                            <input type="email" class="form-input" placeholder="you@example.com" required>
+                            <input type="email" name="email" class="form-input" placeholder="you@example.com" required>
                         </div>
                         <div class="mb-4">
                             <label class="form-label">Password</label>
-                            <input type="password" class="form-input" placeholder="Create a password" required>
+                            <input type="password" name="password" class="form-input" placeholder="Create a password" required>
                             <p class="text-xs text-gray-500 mt-1">Must be at least 8 characters with a number and special character.</p>
                         </div>
                         <div class="mb-6">
                             <label class="form-label">Confirm Password</label>
-                            <input type="password" class="form-input" placeholder="Confirm your password" required>
+                            <input type="password" name="password_confirmation" class="form-input" placeholder="Confirm your password" required>
                         </div>
                         
                         <div class="mb-6">
