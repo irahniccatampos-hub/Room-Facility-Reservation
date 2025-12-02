@@ -14,10 +14,16 @@ class AuthController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users',
+            'role' => 'nullable|string|in:user,admin',
             'password' => 'required|string|min:5|confirmed'
         ]);
 
-        $user = User::create($validated);
+        $user = User::create([
+            'name'     => $validated['name'],
+            'email'    => $validated['email'],
+            'password' => bcrypt($validated['password']),
+            'role'     => $validated['role'] ?? 'user',   
+        ]);
 
         Auth::login($user);
 
@@ -34,7 +40,13 @@ class AuthController extends Controller
 
         if (Auth::attempt($validated)) {
             $request->session()->regenerate();
-            return redirect()->route('user.dashboard.show')->with('success', 'AUthenticated...');
+
+            $user = Auth::user();
+            if($user->role === 'user'){
+                return redirect()->route('user.dashboard.show')->with('success', 'AUthenticated...');
+            } else {
+                return redirect()->route('admin.dashboard.show')->with('success', 'AUthenticated...');
+            }
             
         }
 

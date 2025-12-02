@@ -9,4 +9,8 @@ class DashboardController extends Controller
     public function userDashboardIndex(){
         return view('partials.dashboard');
     }
+
+    public function adminDashboardIndex(){
+        return view('admin.dashboard');
+    }
 }

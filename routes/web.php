@@ -13,3 +13,4 @@ Route::post('/register',[AuthController::class, 'register'])->name('register');
 Route::post('/logout',[AuthController::class, 'logout'])->name('logout');
 
 Route::get('/user-dashboard', [DashboardController::class, 'userDashboardIndex'])->name('user.dashboard.show');
+Route::get('/admin-dashboard', [DashboardController::class, 'adminDashboardIndex'])->name('admin.dashboard.show');

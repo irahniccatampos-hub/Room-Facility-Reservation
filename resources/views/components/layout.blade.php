@@ -837,34 +837,52 @@
                                 <input type="text" name="name" class="form-input" placeholder="John" required>
                             </div>
                         </div>
+
                         <div class="mb-4">
                             <label class="form-label">Email Address</label>
                             <input type="email" name="email" class="form-input" placeholder="you@example.com" required>
                         </div>
+
                         <div class="mb-4">
                             <label class="form-label">Password</label>
                             <input type="password" name="password" class="form-input" placeholder="Create a password" required>
                             <p class="text-xs text-gray-500 mt-1">Must be at least 8 characters with a number and special character.</p>
                         </div>
+
                         <div class="mb-6">
                             <label class="form-label">Confirm Password</label>
                             <input type="password" name="password_confirmation" class="form-input" placeholder="Confirm your password" required>
                         </div>
-                        
+
+                        <!-- Terms of Service -->
                         <div class="mb-6">
                             <label class="flex items-center">
                                 <input type="checkbox" class="mr-2" required>
-                                <span class="text-sm text-gray-700">I agree to the <a href="#" class="text-blue-600 hover:underline">Terms of Service</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a></span>
+                                <span class="text-sm text-gray-700">
+                                    I agree to the 
+                                    <a href="#" class="text-blue-600 hover:underline">Terms of Service</a> and 
+                                    <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>
+                                </span>
                             </label>
                         </div>
-                        
+
+                        <!-- Admin Checkbox -->
+                        <div class="mb-4">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="registerAsAdmin" class="mr-2">
+                                <span class="text-sm text-gray-700">Register as Admin</span>
+                            </label>
+                            <!-- Hidden input for role -->
+                            <input type="hidden" name="role" id="roleInput" value="user">
+                        </div>
+
                         <button type="submit" class="form-button">Create Account</button>
                     </form>
-                    
+
                     <div class="divider">
                         <span>Or sign up with</span>
                     </div>
-                    
+
                     <div class="social-login">
                         <button class="social-btn google">
                             <i class="fab fa-google text-red-500"></i>
@@ -875,7 +893,7 @@
                             <span>GitHub</span>
                         </button>
                     </div>
-                    
+
                     <p class="text-center mt-6 text-gray-600">
                         Already have an account? 
                         <a href="#" class="text-blue-600 font-medium hover:underline switch-to-login">Sign in here</a>
@@ -886,6 +904,14 @@
     </div>
 
     <!-- JavaScript for Interactivity -->
+     <script>
+        const adminCheckbox = document.getElementById('registerAsAdmin');
+        const roleInput = document.getElementById('roleInput');
+
+        adminCheckbox.addEventListener('change', function() {
+            roleInput.value = this.checked ? 'admin' : 'user';
+        });
+    </script>
     <script>
         // Modal functionality
         const authModal = document.getElementById('authModal');
